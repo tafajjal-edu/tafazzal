@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Professor Felix Amoah - Academic Portfolio</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Georgia', serif;
+        }
+
+        body {
+            background-color: #ffffff;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        header {
+            background-color: #14213d;
+            color: white;
+            padding: 3rem;
+            text-align: center;
+        }
+
+        nav {
+            background-color: #284b7a;
+            padding: 1rem;
+            border-bottom: 3px solid #fca311;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-size: 1.1rem;
+        }
+
+        .hero {
+            text-align: center;
+            padding: 4rem 2rem;
+            background-color: #f8f9fa;
+        }
+
+        .hero img {
+            width: 250px;
+            height: 250px;
+            border-radius: 5px;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+
+        .academic-sections {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 3rem 2rem;
+        }
+
+        .section-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .academic-card {
+            background-color: #ffffff;
+            padding: 2rem;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            border-left: 4px solid #fca311;
+        }
+
+        .publications {
+            background-color: #f8f9fa;
+            padding: 3rem 2rem;
+        }
+
+        .publication-list {
+            max-width: 1200px;
+            margin: 2rem auto;
+        }
+
+        .publication-item {
+            margin-bottom: 1.5rem;
+            padding-left: 1rem;
+            border-left: 3px solid #14213d;
+        }
+
+        footer {
+            background-color: #14213d;
+            color: white;
+            text-align: center;
+            padding: 2rem;
+            margin-top: 2rem;
+        }
+
+        .contact-info {
+            margin-top: 2rem;
+            text-align: center;
+        }
+
+        .contact-info a {
+            color: #fca311;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Prof. Felix Amoah</h1>
+        <p>Professor of Marketing</p>
+        <p>Head of Department : Marketing Management</p>
+        <p>Nelson Mandela University</p>
+        <p>South Africa</p>
+
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="#about">About</a></li>
+            <li><a href="#research">Research</a></li>
+            <li><a href="#publications">Publications</a></li>
+            <li><a href="#teaching">Teaching</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <section class="hero">
+        <img src="https://via.placeholder.com/250" alt="Professor Smith">
+        <h2>Welcome to My Academic Portfolio</h2>
+        <p>Specializing in Artificial Intelligence and Machine Learning</p>
+    </section>
+
+    <section class="academic-sections" id="research">
+        <h2>Research Areas</h2>
+        <div class="section-grid">
+            <div class="academic-card">
+                <h3>Machine Learning</h3>
+                <p>Current research focuses on deep learning applications in healthcare and natural language processing.</p>
+            </div>
+            <div class="academic-card">
+                <h3>Artificial Intelligence</h3>
+                <p>Working on autonomous systems and decision-making algorithms for real-world applications.</p>
+            </div>
+            <div class="academic-card">
+                <h3>Data Science</h3>
+                <p>Developing novel approaches to big data analytics and predictive modeling.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="publications" id="publications">
+        <h2>Recent Publications</h2>
+        <div class="publication-list">
+            <div class="publication-item">
+                <p>Smith, S., et al. (2023). "Advanced Machine Learning Approaches in Healthcare." Journal of AI in Medicine.</p>
+            </div>
+            <div class="publication-item">
+                <p>Johnson, R., Smith, S. (2022). "Neural Networks for Natural Language Processing." International Conference on AI.</p>
+            </div>
+            <div class="publication-item">
+                <p>Smith, S. (2022). "The Future of Autonomous Systems." IEEE Transactions on AI.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="academic-sections" id="teaching">
+        <h2>Current Courses</h2>
+        <div class="section-grid">
+            <div class="academic-card">
+                <h3>CS401: Advanced AI</h3>
+                <p>Graduate-level course covering modern AI techniques and applications.</p>
+            </div>
+            <div class="academic-card">
+                <h3>CS301: Machine Learning</h3>
+                <p>Undergraduate course introducing fundamental concepts in machine learning.</p>
+            </div>
+        </div>
+    </section>
+
+    <div class="contact-info" id="contact">
+        <h2>Contact Information</h2>
+        <p>Email: <a href="mailto:s.smith@university.edu">s.smith@university.edu</a></p>
+        <p>Office: Science Building, Room 405</p>
+        <p>Office Hours: Monday and Wednesday, 2-4 PM</p>
+    </div>
+
+    <footer>
+        <p>&copy; 2025 Prof. Felix Amoah - Nelson Mandela University</p>
+        <p>Last updated: 2025</p>
+    </footer>
+</body>
+</html>
+
