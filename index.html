@@ -188,81 +188,88 @@
 
     <nav>
         <ul>
-            <li><a href="#about">About</a></li>
-            <li><a href="#research">Research</a></li>
+            <li><a href="">About</a></li>
+            <li><a href="">Research</a></li>
             <li><a href="#publications">Publications</a></li>
             <li><a href="#teaching">Teaching</a></li>
             <li><a href="#contact">Contact</a></li>
         </ul>
     </nav>
 
-    <section class="hero">
-        <img src="https://via.placeholder.com/250" alt="Professor Smith">
-
-
-        <h2>Welcome to My Marketing Research Portfolio </h2>
-
-        <div class="typing-text" style="min-height: 1.2em; font-size: 1.2em; margin: 1em 0;">
-            <span id="typed-text"></span><span class="cursor">|</span>
+    <section class="hero" style="position: relative; min-height: 500px;">
+        <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: -1;">
+            <img src="https://images.unsplash.com/photo-1497493292307-31c376b6e479?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1171&q=80" alt="Professor Amoah" style="width: 100%; height: 100%; object-fit: cover;">
         </div>
-        <style>
-            .typing-text .cursor {
-                animation: blink 1s infinite;
-            }
-            @keyframes blink {
-                0%, 100% { opacity: 1; }
-                50% { opacity: 0; }
-            }
-        </style>
-        <script>
-            const texts = [
-                "Hi, my name is Felix Amoah.",
-                "I am passionate about advancing marketing research through innovative methodologies.",
-                "My focus is on data-driven insights and consumer behavior analysis.",
-                "Welcome to my academic portfolio!"
-            ];
-            const typedTextSpan = document.getElementById("typed-text");
-            let textIndex = 0;
-            let charIndex = 0;
 
-            function type() {
-                if (charIndex < texts[textIndex].length) {
-                    typedTextSpan.textContent += texts[textIndex].charAt(charIndex);
-                    charIndex++;
-                    setTimeout(type, 50);
-                } else {
-                    setTimeout(erase, 2000);
+        <div style="position: relative; z-index: 1; background-color: rgba(0,0,0,0.6); padding: 2rem; color: white;">
+            <h2>Felix Amoah</h2>
+
+            <div class="typing-text" style="min-height: 1.2em; font-size: 1.2em; margin: 1em 0;">
+                <span id="typed-text"></span><span class="cursor">|</span>
+            </div>
+            <style>
+                .typing-text .cursor {
+                    animation: blink 1s infinite;
                 }
-            }
-
-            function erase() {
-                if (charIndex > 0) {
-                    typedTextSpan.textContent = texts[textIndex].substring(0, charIndex-1);
-                    charIndex--;
-                    setTimeout(erase, 25);
-                } else {
-                    textIndex = (textIndex + 1) % texts.length;
-                    setTimeout(type, 1000);
+                @keyframes blink {
+                    0%, 100% { opacity: 1; }
+                    50% { opacity: 0; }
                 }
-            }
+            </style>
+            <script>
+                const texts = [
+                    "Hi, my name is Felix Amoah.",
+                    "Associate Professor of Marketing at Nelson Mandela University",
+                    "I am passionate about advancing marketing research through innovative methodologies.",
+                    "My focus is on data-driven insights and consumer behavior analysis.",
+                    "Welcome to my academic portfolio!"
+                ];
+                const typedTextSpan = document.getElementById("typed-text");
+                let textIndex = 0;
+                let charIndex = 0;
 
-            window.addEventListener('load', type);
-        </script>
+                function type() {
+                    if (charIndex < texts[textIndex].length) {
+                        typedTextSpan.textContent += texts[textIndex].charAt(charIndex);
+                        charIndex++;
+                        setTimeout(type, 50);
+                    } else {
+                        setTimeout(erase, 2000);
+                    }
+                }
 
-        
+                function erase() {
+                    if (charIndex > 0) {
+                        typedTextSpan.textContent = texts[textIndex].substring(0, charIndex-1);
+                        charIndex--;
+                        setTimeout(erase, 25);
+                    } else {
+                        textIndex = (textIndex + 1) % texts.length;
+                        setTimeout(type, 1000);
+                    }
+                }
 
-        </section>
+                window.addEventListener('load', type);
+            </script>
+        </div>
+    </section>
 
     <section class="academic-sections" id="research">
         <h2>Research Areas</h2>
         <div class="section-grid">
             <div class="academic-card">
-                <h3>Machine Learning</h3>
-                <p>Current research focuses on deep learning applications in healthcare and natural language processing.</p>
-            </div>
+                <h3></h3>
+<p>
+
+</p>            
+
+</div>
             <div class="academic-card">
-                <h3>Artificial Intelligence</h3>
-                <p>Working on autonomous systems and decision-making algorithms for real-world applications.</p>
+                <h3></h3>
+                <p>
+                    
+                
+                </p>
             </div>
             <div class="academic-card">
                 <h3>Data Science</h3>
@@ -271,20 +278,7 @@
         </div>
     </section>
 
-    <section class="publications" id="publications">
-        <h2>Recent Publications</h2>
-        <div class="publication-list">
-            <div class="publication-item">
-                <p>Smith, S., et al. (2023). "Advanced Machine Learning Approaches in Healthcare." Journal of AI in Medicine.</p>
-            </div>
-            <div class="publication-item">
-                <p>Johnson, R., Smith, S. (2022). "Neural Networks for Natural Language Processing." International Conference on AI.</p>
-            </div>
-            <div class="publication-item">
-                <p>Smith, S. (2022). "The Future of Autonomous Systems." IEEE Transactions on AI.</p>
-            </div>
-        </div>
-    </section>
+    
 
     <section class="academic-sections" id="teaching">
         <h2>Current Courses</h2>
@@ -302,9 +296,9 @@
 
     <div class="contact-info" id="contact">
         <h2>Contact Information</h2>
-        <p>Email: <a href="mailto:s.smith@university.edu">s.smith@university.edu</a></p>
-        <p>Office: Science Building, Room 405</p>
-        <p>Office Hours: Monday and Wednesday, 2-4 PM</p>
+        <p>Email: <a href="mailto:felix.amoah@mandela.ac.za">felix.amoah@mandela.ac.za</a></p>
+        <p>Office: </p>
+        <p>Office Hours: Monday - Friday, 2-4 PM</p>
     </div>
 
     <footer>
