@@ -124,16 +124,19 @@
      /* Hide navigation links by default on small screens */
 @media screen and (max-width: 768px) {
     nav ul {
-        display: none;
-        flex-direction: column;
-        background-color: transparent; /* Navy Blue */
-        position: absolute;
-        top: 100%;
-        right: 0;
-        left: 0;
-        text-align: center;
-        padding: 1rem 0;
-    }
+    display: none; /* Initially hidden */
+    flex-direction: column;
+    background-color: #3498db; /* Stylish blue background */
+    position: fixed; /* Use fixed for viewport positioning */
+    top: 0; /* Start from the top */
+    left: 0; /* Start from the left */
+    width: 100vw; /* Cover the full width */
+    height: 100vh; /* Cover the full height */
+    text-align: center;
+    padding: 1rem 0;
+    z-index: 1; /* Ensure it's on top of other elements */
+}
+
 
     nav ul.active {
         display: flex;
