@@ -3,8 +3,66 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Professor Felix Amoah - Academic Portfolio- Home</title>
+    <title>Professor Felix Amoah - Academic Portfolio - Contact</title>
     <style>
+
+form {
+    background: linear-gradient(135deg, #1a365d 0%, #2d4a8a 100%);
+    color: white;
+    padding: 2rem;
+    border-radius: 15px;
+    max-width: 600px;
+    margin: 2rem auto;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    color: rgba(255,255,255,0.9);
+}
+
+input[type="text"],
+input[type="email"],
+input[type="text"],
+textarea {
+    width: 100%;
+    padding: 0.8rem;
+    border-radius: 8px;
+    border: none;
+    background-color: rgba(255,255,255,0.1);
+    color: white;
+    font-size: 1rem;
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="text"]:focus,
+textarea:focus {
+    outline: none;
+    box-shadow: 0 0 5px rgba(66,153,225,0.8);
+}
+
+button {
+    background-color: #4299e1; /* Blue accent */
+    color: white;
+    padding: 0.8rem 1.5rem;
+    border-radius: 8px;
+    border: none;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #2b6cb0; /* Darker blue */
+}
+
         * {
             margin: 0;
             padding: 0;
@@ -182,7 +240,7 @@
         .hero {
             height:100vh;
             width: 100vw; /* Cover the full width */
-            background-image: url('Prof Amoah.jpg');
+            background-image: url('Prof Amoah- Contact pic.jpg');
             background-position: center;
             background-repeat: no-repeat;
             overflow: hidden;
@@ -282,6 +340,16 @@
             }
         }
     </style>
+
+
+
+
+    <style>
+        .success { color: green; }
+        .error { color: red; }
+    </style>
+
+
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
 
@@ -306,22 +374,76 @@
             </ul>
         </div>
     </nav>
-    
-
-   
-    
 
     <section class="hero">
         <div class="hero-background"></div>
         <div class="hero-content">
             <h2 style="color: white; font-weight: bold; font-size: 2.8rem; text-shadow: 2px 2px 4px rgba(0,0,0,0.5); margin-bottom: 1rem;">
-                Hi, I'm Felix Amoah
+                Contact Me
             </h2>
             <div class="typing-text">
                 <span id="typed-text"></span><span class="cursor">|</span>
             </div>
         </div>
-    </section>
+    </section> 
+    
+ <!-- Contact Form -->
+<form id="contactForm" method="POST" action="contact_form.php">
+    <h2 style="text-align: center;">Contact Me</h2>
+
+    <div class="form-group">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" required>
+    </div>
+    <div class="form-group">
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required>
+    </div>
+    <div class="form-group">
+        <label for="subject">Subject:</label>
+        <input type="text" id="subject" name="subject" required>
+    </div>
+    <div class="form-group">
+        <label for="message">Message:</label>
+        <textarea id="message" name="message" rows="5" required></textarea>
+    </div>
+    <button type="submit">Send Message</button>
+</form>
+
+<!-- Response Message Display -->
+<div id="responseMessage"></div>
+
+<script>
+    document.getElementById('contactForm').addEventListener('submit', function (event) {
+        event.preventDefault(); // Prevent default form submission
+
+        // Prepare form data
+        const formData = new FormData(this);
+
+        // Send form data via AJAX
+        fetch('', { // Empty action sends to the same file
+            method: 'POST',
+            body: formData
+        })
+        .then(response => response.text())
+        .then(data => {
+            // Display the server's response
+            document.getElementById('responseMessage').innerText = data;
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            document.getElementById('responseMessage').innerText = 'An error occurred. Please try again.';
+        });
+    });
+</script>
+ <!-- End of Contact Form -->
+
+
+
+  
+    
+
+  
     
 
 
@@ -339,12 +461,13 @@
     </style>
     <script>
         const texts = [
-            "Associate Professor of Marketing at Nelson Mandela University (NMU)",
-            "Head of Department: Marketing Management (NMU)",
-            "Senior Lecturer at NMU",
-            "I am passionate about advancing marketing research through innovative methodologies.",
-            "My focus is on data-driven insights and consumer behavior analysis.",
-            "Welcome to my academic portfolio!"
+            "Use the form below to conatct me",
+            "Firstly enter your name",
+            "Secondly enter your email address ",
+           "Thirdly enter the subject of your message ",
+            "Enter your message",
+            "Click Send message and your message will be submitted to me",
+            "Alternatively, reach out to me directly via my email or office line"
         ];
         const typedTextSpan = document.getElementById("typed-text");
         let textIndex = 0;
