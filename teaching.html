@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Professor Felix Amoah - Academic Portfolio - Teaching</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+        }
+
+        body {
+            background-color: #fafafa;
+            color: #2d3748;
+            line-height: 1.7;
+        }
+
+        header {
+            background: linear-gradient(135deg, #1a365d 0%, #2d4a8a 100%);
+            color: white;
+            padding: 4rem 2rem;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        header p {
+            margin: 0.5rem 0;
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        nav {
+    background: linear-gradient(120deg, 
+        rgba(0, 18, 125, 0.95), /* Navy Blue */
+        rgba(191, 161, 129, 0.95) /* Gold Tint */
+    );
+    background-color: rgba(0, 18, 125, 0.95); /* Fallback Navy Blue */
+    padding: 1.2rem;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    transition: all 0.3s ease;
+    border-bottom: 1px solid rgba(255,255,255,0.3);
+}
+
+
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            gap: 6px;
+            cursor: pointer;
+            padding: 10px;
+            z-index: 1000;
+        }
+
+        .menu-toggle span {
+            width: 30px;
+            height: 3px;
+            background-color: #2d3748;
+            transition: all 0.3s ease;
+            border-radius: 3px;
+        }
+
+      
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            gap: 4rem;
+            flex-wrap: wrap;
+            margin: 0 auto;
+            transition: all 0.3s ease;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-size: 1.1rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            position: relative;
+        }
+
+        nav a:hover {
+            color: #4299e1;
+            background-color: rgba(66, 153, 225, 0.1);
+        }
+
+        nav a.active {
+            color: #4299e1;
+            background-color: rgba(66, 153, 225, 0.15);
+        }
+
+        nav a::before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 2px;
+            background-color: #4299e1;
+            transition: width 0.3s ease;
+        }
+
+     /* Hide navigation links by default on small screens */
+@media screen and (max-width: 768px) {
+    nav ul {
+    display: none; /* Initially hidden */
+    flex-direction: column;
+    background-color: #3498db; /* Stylish blue background */
+    position: fixed; /* Use fixed for viewport positioning */
+    top: 0; /* Start from the top */
+    left: 0; /* Start from the left */
+    width: 100vw; /* Cover the full width */
+    height: 100vh; /* Cover the full height */
+    text-align: center;
+    padding: 1rem 0;
+    z-index: 1; /* Ensure it's on top of other elements */
+}
+
+
+    nav ul.active {
+        display: flex;
+    }
+
+    .menu-toggle {
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+        cursor: pointer;
+    }
+
+    .menu-toggle span {
+        width: 30px;
+        height: 3px;
+        background-color: white;
+        border-radius: 3px;
+        transition: all 0.3s ease-in-out;
+    }
+
+    .menu-toggle.active span:nth-child(1) {
+        transform: rotate(45deg) translate(5px, 5px);
+    }
+
+    .menu-toggle.active span:nth-child(2) {
+        opacity: 0;
+    }
+
+    .menu-toggle.active span:nth-child(3) {
+        transform: rotate(-45deg) translate(5px, -5px);
+    }
+}
+
+
+
+
+        nav a:hover::before {
+            width: 80%;
+        }
+
+        
+
+        .hero {
+            height:100vh;
+            width: 100vw; /* Cover the full width */
+            background-image: url('Prof Amoah.jpg');
+            background-position: center;
+            background-repeat: no-repeat;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-blend-mode: overlay;
+            background-color: rgba(0,0,0,0.4);
+        }
+
+
+
+        .academic-sections {
+            max-width: 1200px;
+            margin: 4rem auto;
+            padding: 2rem;
+        }
+
+        .section-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2.5rem;
+            margin-top: 2.5rem;
+        }
+
+        .academic-card {
+            background-color: white;
+            padding: 2.5rem;
+            border-radius: 15px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .academic-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 15px rgba(0,0,0,0.1);
+        }
+
+        .contact-info {
+            background: white;
+            padding: 4rem 2rem;
+            text-align: center;
+            border-radius: 20px;
+            margin: 4rem auto;
+            max-width: 800px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+        }
+
+        .contact-info a {
+            color: #4299e1;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .contact-info a:hover {
+            color: #2b6cb0;
+        }
+
+        footer {
+            background: linear-gradient(135deg, #1a365d 0%, #2d4a8a 100%);
+            color: white;
+            text-align: center;
+            padding: 2rem;
+            margin-top: 4rem;
+        }
+
+        .typing-text {
+            background: rgba(255,255,255,0.9);
+            padding: 1rem 2rem;
+            border-radius: 10px;
+            margin: 2rem 0;
+        }
+
+        @media screen and (max-width: 768px) {
+            
+
+            .academic-sections {
+                padding: 2rem 1rem;
+            }
+        }
+
+        @media screen and (max-width: 480px) {
+            header {
+                padding: 3rem 1rem;
+            }
+
+            h1 {
+                font-size: 2rem;
+            }
+
+            h2 {
+                font-size: 1.7rem;
+            }
+
+            h3 {
+                font-size: 1.4rem;
+            }
+        }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+
+
+<body>
+    
+
+    <nav>
+        <div class="nav-container">
+            <div class="menu-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="research.html">Research</a></li>
+                <li><a href="publications.html">Publications</a></li>
+                <li><a href="teaching.html">Teaching</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+    
+
+   
+    
+
+   <!--  <section class="hero">
+        <div class="hero-background"></div>
+        <div class="hero-content">
+            <h2 style="color: white; font-weight: bold; font-size: 2.8rem; text-shadow: 2px 2px 4px rgba(0,0,0,0.5); margin-bottom: 1rem;">
+                Hi, I'm Felix Amoah
+            </h2>
+            <div class="typing-text">
+                <span id="typed-text"></span><span class="cursor">|</span>
+            </div>
+        </div>
+    </section> -->
+    
+
+
+
+    
+<!--Typing text js code-->
+    <style>
+        .typing-text .cursor {
+            animation: blink 1s infinite;
+        }
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+        }
+    </style>
+    <script>
+        const texts = [
+            "Associate Professor of Marketing at Nelson Mandela University (NMU)",
+            "Head of Department: Marketing Management (NMU)",
+            "Senior Lecturer at NMU",
+            "I am passionate about advancing marketing research through innovative methodologies.",
+            "My focus is on data-driven insights and consumer behavior analysis.",
+            "Welcome to my academic portfolio!"
+        ];
+        const typedTextSpan = document.getElementById("typed-text");
+        let textIndex = 0;
+        let charIndex = 0;
+
+        function type() {
+            if (charIndex < texts[textIndex].length) {
+                typedTextSpan.textContent += texts[textIndex].charAt(charIndex);
+                charIndex++;
+                setTimeout(type, 50);
+            } else {
+                setTimeout(erase, 2000);
+            }
+        }
+
+        function erase() {
+            if (charIndex > 0) {
+                typedTextSpan.textContent = texts[textIndex].substring(0, charIndex-1);
+                charIndex--;
+                setTimeout(erase, 25);
+            } else {
+                textIndex = (textIndex + 1) % texts.length;
+                setTimeout(type, 1000);
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', type);
+    </script>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const menuToggle = document.querySelector('.menu-toggle');
+        const navLinks = document.querySelector('nav ul');
+
+        menuToggle.addEventListener('click', () => {
+            menuToggle.classList.toggle('active');
+            navLinks.classList.toggle('active');
+        });
+    });
+</script>
+    <!-- <section class="academic-sections" id="research">
+        <h2>Research Areas</h2>
+        <div class="section-grid">
+            <div class="academic-card">
+                <h3>Consumer Behavior</h3>
+                <p>Investigating modern consumer decision-making processes and market trends.</p>
+            </div>
+            <div class="academic-card">
+                <h3>Digital Marketing</h3>
+                <p>Exploring the impact of digital transformation on marketing strategies.</p>
+            </div>
+            <div class="academic-card">
+                <h3>Marketing Analytics</h3>
+                <p>Leveraging data science for marketing insights and decision-making.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="academic-sections" id="teaching">
+        <h2>Current Courses</h2>
+        <div class="section-grid">
+            <div class="academic-card">
+                <h3>Marketing Management</h3>
+                <p>Advanced strategies and contemporary marketing practices.</p>
+            </div>
+            <div class="academic-card">
+                <h3>Consumer Behavior Analysis</h3>
+                <p>Understanding consumer psychology and decision-making processes.</p>
+            </div>
+        </div>
+    </section> -->
+
+    <div class="contact-info" id="contact">
+        <h2>Contact Information</h2>
+        <p>Email: <a href="mailto:felix.amoah@mandela.ac.za">felix.amoah@mandela.ac.za</a></p>
+        <p>Office No: <a href="tel:+27415043796">+27 41 504 3796</a></P>
+        <p>Office: Marketing Department, 2nd Avenue Campus, Summerstrand,
+            Nelson Mandela University</p>
+        <p>Office Hours: Monday - Friday, 8 AM - 5 PM</p>
+
+    </div>
+
+    <footer>
+        <p>&copy; 2025 Prof. Felix Amoah - Nelson Mandela University</p>
+        <p>Last updated: 2025</p>
+        <p>Designed by <a href="yourlink.com" style="color: red;">Mr. S.K Mensah</a></p>
+    </footer>
+    
+</body>
+</html>
