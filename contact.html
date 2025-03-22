@@ -386,54 +386,124 @@ button:hover {
             </div>
         </div>
     </section> 
-    
+<!--Typing text js code-->
+<style>
+    .typing-text .cursor {
+        animation: blink 1s infinite;
+    }
+    @keyframes blink {
+        0%, 100% { opacity: 1; }
+        50% { opacity: 0; }
+    }
+</style>
+<script>
+    const texts = [
+        "Use the form below to conatct me",
+        "Firstly enter your name",
+        "Secondly enter your email address ",
+       "Thirdly enter the subject of your message ",
+        "Enter your message",
+        "Click Send message and your message will be submitted to me",
+        "Alternatively, reach out to me directly via my email or office line",
+    "I should then get back to you shortly"
+    ];
+    const typedTextSpan = document.getElementById("typed-text");
+    let textIndex = 0;
+    let charIndex = 0;
+
+    function type() {
+        if (charIndex < texts[textIndex].length) {
+            typedTextSpan.textContent += texts[textIndex].charAt(charIndex);
+            charIndex++;
+            setTimeout(type, 50);
+        } else {
+            setTimeout(erase, 2000);
+        }
+    }
+
+    function erase() {
+        if (charIndex > 0) {
+            typedTextSpan.textContent = texts[textIndex].substring(0, charIndex-1);
+            charIndex--;
+            setTimeout(erase, 25);
+        } else {
+            textIndex = (textIndex + 1) % texts.length;
+            setTimeout(type, 1000);
+        }
+    }
+
+    document.addEventListener('DOMContentLoaded', type);
+</script>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+    const menuToggle = document.querySelector('.menu-toggle');
+    const navLinks = document.querySelector('nav ul');
+
+    menuToggle.addEventListener('click', () => {
+        menuToggle.classList.toggle('active');
+        navLinks.classList.toggle('active');
+    });
+});
+</script>
+<!--end of writing text js-->
+
+
+
  <!-- Contact Form -->
-<form id="contactForm" method="POST" action="contact_form.php">
+ <form id="contactForm">
     <h2 style="text-align: center;">Contact Me</h2>
 
     <div class="form-group">
-        <label for="name">Name:</label>
-        <input type="text" id="name" name="name" required>
+      <label for="name">Name:</label>
+      <input type="text" id="name" name="name" required>
     </div>
-    <div class="form-group">
-        <label for="email">Email:</label>
-        <input type="email" id="email" name="email" required>
-    </div>
-    <div class="form-group">
-        <label for="subject">Subject:</label>
-        <input type="text" id="subject" name="subject" required>
-    </div>
-    <div class="form-group">
-        <label for="message">Message:</label>
-        <textarea id="message" name="message" rows="5" required></textarea>
-    </div>
-    <button type="submit">Send Message</button>
-</form>
 
-<!-- Response Message Display -->
-<div id="responseMessage"></div>
+    <div class="form-group">
+      <label for="email">Email:</label>
+      <input type="email" id="email" name="email" required>
+    </div>
+
+    <div class="form-group">
+      <label for="subject">Subject:</label>
+      <input type="text" id="subject" name="subject" required>
+    </div>
+
+    <div class="form-group">
+      <label for="message">Message:</label>
+      <textarea id="message" name="message" rows="5" required></textarea>
+    </div>
+    <button type="submit">Submit</button>
+  </form>
+  <p id="confirmationMessage" style="display: none;">Thank you! Your message has been sent.</p>
+
+</div>
 
 <script>
-    document.getElementById('contactForm').addEventListener('submit', function (event) {
-        event.preventDefault(); // Prevent default form submission
+    document.getElementById("contactForm").addEventListener("submit", async function (event) {
+        event.preventDefault();
 
-        // Prepare form data
-        const formData = new FormData(this);
+        const name = document.getElementById("name").value;
+        const email = document.getElementById("email").value;
+        const subject = document.getElementById("subject").value;
+        const message = document.getElementById("message").value;
 
-        // Send form data via AJAX
-        fetch('', { // Empty action sends to the same file
-            method: 'POST',
-            body: formData
-        })
-        .then(response => response.text())
-        .then(data => {
-            // Display the server's response
-            document.getElementById('responseMessage').innerText = data;
-        })
-        .catch(error => {
-            console.error('Error:', error);
-            document.getElementById('responseMessage').innerText = 'An error occurred. Please try again.';
-        });
+        try {
+            const response = await fetch('/send-email', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ name, email, subject, message }),
+            });
+
+            if (response.ok) {
+                document.getElementById("confirmationMessage").style.display = "block";
+                document.getElementById("contactForm").reset();
+            } else {
+                console.error('Failed to send email.');
+            }
+        } catch (error) {
+            console.error(error);
+        }
     });
 </script>
  <!-- End of Contact Form -->
@@ -449,96 +519,8 @@ button:hover {
 
 
     
-<!--Typing text js code-->
-    <style>
-        .typing-text .cursor {
-            animation: blink 1s infinite;
-        }
-        @keyframes blink {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0; }
-        }
-    </style>
-    <script>
-        const texts = [
-            "Use the form below to conatct me",
-            "Firstly enter your name",
-            "Secondly enter your email address ",
-           "Thirdly enter the subject of your message ",
-            "Enter your message",
-            "Click Send message and your message will be submitted to me",
-            "Alternatively, reach out to me directly via my email or office line"
-        ];
-        const typedTextSpan = document.getElementById("typed-text");
-        let textIndex = 0;
-        let charIndex = 0;
 
-        function type() {
-            if (charIndex < texts[textIndex].length) {
-                typedTextSpan.textContent += texts[textIndex].charAt(charIndex);
-                charIndex++;
-                setTimeout(type, 50);
-            } else {
-                setTimeout(erase, 2000);
-            }
-        }
 
-        function erase() {
-            if (charIndex > 0) {
-                typedTextSpan.textContent = texts[textIndex].substring(0, charIndex-1);
-                charIndex--;
-                setTimeout(erase, 25);
-            } else {
-                textIndex = (textIndex + 1) % texts.length;
-                setTimeout(type, 1000);
-            }
-        }
-
-        document.addEventListener('DOMContentLoaded', type);
-    </script>
-
-<script>
-    document.addEventListener('DOMContentLoaded', () => {
-        const menuToggle = document.querySelector('.menu-toggle');
-        const navLinks = document.querySelector('nav ul');
-
-        menuToggle.addEventListener('click', () => {
-            menuToggle.classList.toggle('active');
-            navLinks.classList.toggle('active');
-        });
-    });
-</script>
-    <!-- <section class="academic-sections" id="research">
-        <h2>Research Areas</h2>
-        <div class="section-grid">
-            <div class="academic-card">
-                <h3>Consumer Behavior</h3>
-                <p>Investigating modern consumer decision-making processes and market trends.</p>
-            </div>
-            <div class="academic-card">
-                <h3>Digital Marketing</h3>
-                <p>Exploring the impact of digital transformation on marketing strategies.</p>
-            </div>
-            <div class="academic-card">
-                <h3>Marketing Analytics</h3>
-                <p>Leveraging data science for marketing insights and decision-making.</p>
-            </div>
-        </div>
-    </section>
-
-    <section class="academic-sections" id="teaching">
-        <h2>Current Courses</h2>
-        <div class="section-grid">
-            <div class="academic-card">
-                <h3>Marketing Management</h3>
-                <p>Advanced strategies and contemporary marketing practices.</p>
-            </div>
-            <div class="academic-card">
-                <h3>Consumer Behavior Analysis</h3>
-                <p>Understanding consumer psychology and decision-making processes.</p>
-            </div>
-        </div>
-    </section> -->
 
     <div class="contact-info" id="contact">
         <h2>Contact Information</h2>
