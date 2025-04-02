@@ -34,7 +34,7 @@
         <div class="hero-background"></div>
         <div class="hero-content">
             <h2 style="color: white; font-weight: bold; font-size: 2.8rem; text-shadow: 2px 2px 4px rgba(0,0,0,0.5); margin-bottom: 1rem;">
-                Get in touch
+                Get in touch with me
             </h2>
             <div class="typing-text">
                 <span id="typed-text"></span><span class="cursor">|</span>
@@ -53,12 +53,12 @@
 </style>
 <script>
     const texts = [
-        "Use the form below to contact me",
+        "Use the form below to reach out to me",
         "Enter your name and email",
        "Enter the subject of your message as well as the message ",
         "Click Send message and your message will be submitted to me",
+        "I will then get back to you shortly",
         "Alternatively, reach out to me directly via my email or office line",
-    "I should then get back to you shortly"
     ];
     const typedTextSpan = document.getElementById("typed-text");
     let textIndex = 0;
@@ -103,34 +103,33 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 
- <!-- Contact Form -->
- <form id="contactForm">
+<form id="contactForm" action="mailto:sam12mensah@gmail.com" method="post" enctype="text/plain">
     <h2 style="text-align: center;">Contact Me</h2>
-
+  
     <div class="form-group">
       <label for="name">Name:</label>
       <input type="text" id="name" name="name" required>
     </div>
-
+  
     <div class="form-group">
       <label for="email">Email:</label>
       <input type="email" id="email" name="email" required>
     </div>
-
+  
     <div class="form-group">
       <label for="subject">Subject:</label>
       <input type="text" id="subject" name="subject" required>
     </div>
-
+  
     <div class="form-group">
       <label for="message">Message:</label>
       <textarea id="message" name="message" rows="5" required></textarea>
     </div>
+  
     <button type="submit">Submit</button>
-  </form>
-  <p id="confirmationMessage" style="display: none;">Thank you! Your message has been sent.</p>
-
-</div>
+  
+</form>
+  
 
 <script>
      document.getElementById("contactForm").addEventListener("submit", async function (event) {
