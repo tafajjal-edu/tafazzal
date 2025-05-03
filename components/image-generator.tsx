@@ -8,21 +8,27 @@ import { Label } from "@/components/ui/label"
 import { Textarea } from "@/components/ui/textarea"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { Switch } from "@/components/ui/switch"
+import { Slider } from "@/components/ui/slider"
 import { Loader2, ImageIcon } from "lucide-react"
 import { generateImage } from "@/app/actions/generate-image"
 import ImageDisplay from "./image-display"
 import StyleSelector from "./style-selector"
+import ModelSelector from "./model-selector"
 
 export default function ImageGenerator() {
   const [prompt, setPrompt] = useState("")
   const [negativePrompt, setNegativePrompt] = useState("")
   const [size, setSize] = useState("1024x1024")
   const [style, setStyle] = useState("photorealistic")
+  const [model, setModel] = useState("stabilityai/sd3.5")
   const [seed, setSeed] = useState<number | null>(null)
   const [useSeed, setUseSeed] = useState(false)
+  const [numInferenceSteps, setNumInferenceSteps] = useState(30)
+  const [guidanceScale, setGuidanceScale] = useState(7.5)
   const [isGenerating, setIsGenerating] = useState(false)
   const [generatedImage, setGeneratedImage] = useState<string | null>(null)
   const [error, setError] = useState<string | null>(null)
+  const [showAdvanced, setShowAdvanced] = useState(false)
 
   const handleGenerate = async () => {
     if (!prompt.trim()) {
@@ -39,7 +45,10 @@ export default function ImageGenerator() {
         negativePrompt: negativePrompt || undefined,
         size,
         style,
+        model,
         seed: useSeed && seed !== null ? seed : undefined,
+        numInferenceSteps,
+        guidanceScale,
       })
 
       if (result.success) {
@@ -86,6 +95,8 @@ export default function ImageGenerator() {
               />
             </div>
 
+            <ModelSelector value={model} onChange={setModel} />
+
             <div>
               <Label htmlFor="size">Image Size</Label>
               <Select value={size} onValueChange={setSize}>
@@ -106,30 +117,76 @@ export default function ImageGenerator() {
 
             <div className="space-y-2">
               <div className="flex items-center justify-between">
-                <Label htmlFor="use-seed">Use Seed</Label>
-                <Switch id="use-seed" checked={useSeed} onCheckedChange={setUseSeed} />
+                <Label htmlFor="show-advanced">Advanced Settings</Label>
+                <Switch id="show-advanced" checked={showAdvanced} onCheckedChange={setShowAdvanced} />
               </div>
+            </div>
 
-              {useSeed && (
+            {showAdvanced && (
+              <div className="space-y-4 border rounded-md p-4 bg-muted/20">
                 <div className="space-y-2">
-                  <div className="flex gap-2">
-                    <Input
-                      type="number"
-                      value={seed !== null ? seed : ""}
-                      onChange={(e) => setSeed(e.target.value ? Number.parseInt(e.target.value) : null)}
-                      placeholder="Seed value"
-                      className="flex-1"
-                    />
-                    <Button variant="outline" onClick={handleRandomSeed}>
-                      Random
-                    </Button>
+                  <div className="flex items-center justify-between">
+                    <Label htmlFor="use-seed">Use Seed</Label>
+                    <Switch id="use-seed" checked={useSeed} onCheckedChange={setUseSeed} />
                   </div>
+
+                  {useSeed && (
+                    <div className="space-y-2">
+                      <div className="flex gap-2">
+                        <Input
+                          type="number"
+                          value={seed !== null ? seed : ""}
+                          onChange={(e) => setSeed(e.target.value ? Number.parseInt(e.target.value) : null)}
+                          placeholder="Seed value"
+                          className="flex-1"
+                        />
+                        <Button variant="outline" onClick={handleRandomSeed}>
+                          Random
+                        </Button>
+                      </div>
+                      <p className="text-xs text-muted-foreground">
+                        Using the same seed will produce similar results for the same prompt
+                      </p>
+                    </div>
+                  )}
+                </div>
+
+                <div className="space-y-2">
+                  <div className="flex items-center justify-between">
+                    <Label htmlFor="inference-steps">Inference Steps: {numInferenceSteps}</Label>
+                  </div>
+                  <Slider
+                    id="inference-steps"
+                    min={10}
+                    max={50}
+                    step={1}
+                    value={[numInferenceSteps]}
+                    onValueChange={(value) => setNumInferenceSteps(value[0])}
+                  />
                   <p className="text-xs text-muted-foreground">
-                    Using the same seed will produce similar results for the same prompt
+                    Higher values (30-50) produce more detailed images but take longer to generate
                   </p>
                 </div>
-              )}
-            </div>
+
+                <div className="space-y-2">
+                  <div className="flex items-center justify-between">
+                    <Label htmlFor="guidance-scale">Guidance Scale: {guidanceScale.toFixed(1)}</Label>
+                  </div>
+                  <Slider
+                    id="guidance-scale"
+                    min={1}
+                    max={20}
+                    step={0.1}
+                    value={[guidanceScale]}
+                    onValueChange={(value) => setGuidanceScale(value[0])}
+                  />
+                  <p className="text-xs text-muted-foreground">
+                    Controls how closely the image follows your prompt. Higher values (7-10) follow the prompt more
+                    closely
+                  </p>
+                </div>
+              </div>
+            )}
 
             {error && <div className="text-sm font-medium text-destructive">{error}</div>}
 

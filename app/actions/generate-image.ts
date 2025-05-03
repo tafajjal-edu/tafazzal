@@ -1,14 +1,17 @@
 "use server"
 
 import { experimental_generateImage as generateImageAI } from "ai"
-import { openai } from "@ai-sdk/openai"
+import { deepinfra } from "@ai-sdk/deepinfra"
 
 interface GenerateImageParams {
   prompt: string
   negativePrompt?: string
   size?: string
   style?: string
+  model?: string
   seed?: number
+  numInferenceSteps?: number
+  guidanceScale?: number
 }
 
 export async function generateImage({
@@ -16,7 +19,10 @@ export async function generateImage({
   negativePrompt,
   size = "1024x1024",
   style = "photorealistic",
+  model = "stabilityai/sd3.5",
   seed,
+  numInferenceSteps = 30,
+  guidanceScale = 7.5,
 }: GenerateImageParams) {
   try {
     // Enhance the prompt based on the selected style
@@ -43,23 +49,28 @@ export async function generateImage({
         break
     }
 
-    // Add negative prompt if provided
-    if (negativePrompt) {
-      enhancedPrompt += ` || Negative prompt: ${negativePrompt}`
-    }
+    // Parse dimensions from size string
+    const [width, height] = size.split("x").map(Number)
 
-    // Generate the image using the AI SDK
+    // Generate the image using the DeepInfra provider
     const result = await generateImageAI({
-      model: openai.image("dall-e-3"),
+      model: deepinfra.image(model),
       prompt: enhancedPrompt,
-      size: size,
-      ...(seed !== undefined ? { seed } : {}),
+      negativePrompt: negativePrompt,
+      aspectRatio: width === height ? "1:1" : width > height ? "16:9" : "9:16",
+      providerOptions: {
+        deepinfra: {
+          num_inference_steps: numInferenceSteps,
+          guidance_scale: guidanceScale,
+          seed: seed !== undefined ? seed : Math.floor(Math.random() * 1000000),
+        },
+      },
     })
 
     // Return the image URL from the result
     return {
       success: true,
-      imageUrl: result.images[0].base64,
+      imageUrl: result.image.url,
     }
   } catch (error) {
     console.error("Error generating image:", error)
